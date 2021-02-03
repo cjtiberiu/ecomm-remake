@@ -61,7 +61,7 @@ const App = () => {
 
     // Check firebase auth state
     useEffect(() => {
-		console.log(process.env);
+		
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
           if (user) {
             const idTokenResult = await user.getIdTokenResult();
@@ -94,7 +94,7 @@ const App = () => {
 				.catch(err => console.log(err))
           }
 		});
-		
+		console.log(process.env);
         // cleanup
 		return () => unsubscribe();
 		
