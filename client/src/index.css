@@ -1,0 +1,91 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.form-control:focus {
+  background-image: linear-gradient(0deg,#3a89b8 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
+}
+
+.mycontainer {
+  width: 1180px;
+}
+
+.search-input i {
+  text-align: center;
+  color: white !important;
+}
+
+.my-divider {
+  height: 1px;
+  width: 100%;
+  background-color: lightgrey;
+}
+
+.ant-input-borderless {
+  color: white !important;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .d-flex {
+    justify-content: center;
+  }
+
+  .mobile-nav {
+    display: block !important;
+  }
+
+  .d-flex > h3 {
+    justify-content: center !important;
+  }
+
+  .ant-card {
+    text-align: center;
+    width: 90% !important;
+  }
+
+  .ant-menu-inline {
+    border-left: 1px solid #f0f0f0;
+  }
+
+  .col-md-2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-container .ant-menu {
+    display: none;
+  }
+
+  .container-fluid {
+    margin-top: 8vh !important;
+  }
+
+  
+
+  
+}
+
+
+
