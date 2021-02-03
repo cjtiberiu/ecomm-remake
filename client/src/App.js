@@ -94,7 +94,6 @@ const App = () => {
 				.catch(err => console.log(err))
           }
 		});
-		console.log(process.env);
         // cleanup
 		return () => unsubscribe();
 		
