@@ -6,13 +6,15 @@ import { EditOutlined, DeleteOutlined, ShoppingCartOutlined, EyeOutlined } from 
 import StarRatings from 'react-star-ratings';
 import ProductRating from '../product/ProductRating';
 import { updateUserCart, getCartItems } from '../../utility/dbCart';
+import { removeFromWishlist } from '../../utility/dbWishlist';
 import { formatPrice } from '../../utility/formatPrice';
+import { toast } from 'react-toastify';
 
 const { Meta } = Card;
 
 const ProductCard = props => {
 
-    const { product, type, loading } = props;
+    const { product, type, setRefresh, refresh } = props;
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
@@ -54,6 +56,21 @@ const ProductCard = props => {
                 type === 'admin' ? [
                     <EditOutlined key="edit" onClick={() => history.push(`/admin/product/edit/${product._id}`)} />,
                     <DeleteOutlined key="delete" onClick={() => history.push(`/admin/product/delete/${product._id}`)} />,
+                ] : type === 'user'  ? [
+                    <div 
+                        className='d-flex justify-content-around align-items-center' 
+                        onClick={() => {
+                            dispatch({ type: 'SET_CURRENT', payload: 'products'})
+                            history.push(`/products/${product._id}`)
+                        }}
+                    >
+                        View Product
+                        <EyeOutlined key="View product" />
+                    </div>,
+                    <div className='d-flex justify-content-around align-items-center' onClick={() => product.quantity > 0 ? !user ? history.push('/login') : updateCart(product) : null}>
+                        {product.quantity > 0 ? !user ? 'Login' : 'Add to cart' : 'Out of stock'}
+                        <ShoppingCartOutlined key="Add to cart" onClick={() => history.push(`/admin/product/delete/${product._id}`)} />
+                    </div>,
                 ] : [
                     <div 
                         className='d-flex justify-content-around align-items-center' 
@@ -69,7 +86,18 @@ const ProductCard = props => {
                         {product.quantity > 0 ? !user ? 'Login' : 'Add to cart' : 'Out of stock'}
                         <ShoppingCartOutlined key="Add to cart" onClick={() => history.push(`/admin/product/delete/${product._id}`)} />
                     </div>,
-                ]}
+                    <div className='d-flex justify-content-around align-items-center' onClick={() => {
+                        removeFromWishlist(user.token, product._id)
+                            .then(() =>{
+                                toast.succes('Product removed');
+                                setRefresh(!refresh);
+                            })
+                            .catch(err => toast.error('Error'))
+                    }}>
+                        Remove from wishlist
+                    <ShoppingCartOutlined key="Add to cart" />
+                </div>,
+                ] }
         >
             <Meta
                 title={`${product.title} - $${formatPrice(product.price)}`}

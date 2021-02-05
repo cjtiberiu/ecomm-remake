@@ -10,6 +10,7 @@ const WishlistPage = props => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [wishlist, setWishlist] = useState([]);
+    const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
         if (user) {
@@ -18,7 +19,7 @@ const WishlistPage = props => {
                 .catch(err => console.log(err))
         }
         
-    }, [])
+    }, [refresh])
 
     return (
         <div className='mt-3'>
@@ -30,7 +31,7 @@ const WishlistPage = props => {
                     <div className='d-flex'>
                         {
                             wishlist.length === 0 ? 'No products to show' : wishlist.map(el => {
-                                return <ProductCard product={el} type='user' />
+                                return <ProductCard product={el} type='wish' refresh={refresh} setRefresh={setRefresh} />
                             })
                         }
                     </div>
