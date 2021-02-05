@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import LoadingToRedirect from './LoadingToRedirect';
+import React, { useEffect, useState } from "react";
+import { Route, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import LoadingToRedirect from "./LoadingToRedirect";
+import { getAdmin } from "../../utility/dbAuth";
 
-import { getAdmin } from '../../utility/dbAuth';
+const AdminRoute = ({ component: Component, ...rest }) => {
+  const { user } = useSelector((state) => ({ ...state }));
+  const [ok, setOk] = useState(false);
 
-const AdminPrivateRoute = ({ ...rest }) => {
-    const user = useSelector(state => state.user);
-    const [ok, setOk] = useState(false);
+  useEffect(() => {
+    if (user && user.token) {
+      getAdmin(user.token)
+        .then((res) => {
+          console.log("CURRENT ADMIN RES", res);
+          setOk(true);
+        })
+        .catch((err) => {
+          console.log("ADMIN ROUTE ERR", err);
+          setOk(false);
+        });
+    }
+  }, [user]);
 
-    // check in the backend if the current user is admin
-    useEffect(() => {
-        if (user && user.token) {
-            getAdmin(user.token)
-                .then(res => {
-                    setOk(true);
-                })
-                .catch(err => {
-                    setOk(false);
-                })
-        }
-
-    }, [user])
-
-    // if user is admin allow acces to '/admin' routes else redirect to homepage
-    return ok ? (
-        <Route {...rest} />
-    ) : (
-        <Redirect to='/' />
-    )
+  return (
+    <Route {...rest} render={(props) => (
+        ok 
+            ? <Component {...props} />
+            : <LoadingToRedirect />
+    )} />
+  )
 };
 
-export default AdminPrivateRoute;
+export default AdminRoute;

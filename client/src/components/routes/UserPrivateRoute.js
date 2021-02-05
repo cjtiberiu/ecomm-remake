@@ -1,17 +1,19 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import LoadingToRedirect from './LoadingToRedirect';
+import React from "react";
+import { Route, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import LoadingToRedirect from "./LoadingToRedirect";
 
-const UserPrivateRoute = ({ ...rest }) => {
-    const user = useSelector(state => state.user);
+const UserRoute = ({ component: Component, ...rest }) => {
+  const { user } = useSelector((state) => ({ ...state }));
 
-    // check if there is a logged in user to acces the private '/user' routes
-    return user && user.token ? (
-        <Route {...rest} />
-    ) : (
-        <Redirect to='/' />
-    )
+  return (
+      <Route {...rest} render={(props) => (
+        user && user.token 
+            ? <Component {...props} /> 
+            : <LoadingToRedirect />
+      )} />
+      
+  )
 };
 
-export default UserPrivateRoute;
+export default UserRoute;
