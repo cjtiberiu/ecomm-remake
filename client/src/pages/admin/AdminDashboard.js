@@ -36,7 +36,7 @@ const AdminDashboard = () => {
         <div className='container-fluid mt-3'>
             <div className='row pb-2'>
                 <div className='col'>
-                    <h3>Admin Control</h3>
+                    <h3>Admin Dashboard</h3>
                 </div> 
             </div>
             <div className='row'>
