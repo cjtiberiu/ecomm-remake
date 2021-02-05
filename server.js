@@ -33,7 +33,7 @@ fs.readdirSync('./routes').map(route => app.use('/api', require('./routes/' + ro
 
 
 app.use(express.static(path.join(__dirname, '/client/build')))
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
