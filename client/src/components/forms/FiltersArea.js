@@ -35,8 +35,8 @@ const FiltersArea = props => {
         
         <Menu
             onClick={handleClick}
-            style={{ width: '100%'}}
-            defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4', 'sub5']}
+            style={{ width: '100%', marginTop: '5vh'}}
+            defaultOpenKeys={['sub1']}
             mode="inline"
             theme='light'
             className='p-1'
