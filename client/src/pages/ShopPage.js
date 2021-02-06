@@ -62,15 +62,15 @@ const ShopPage = () => {
     return (
         <div className='mt-3'>
 
-            <div className='row'>
+            <div className='row justify-content-center'>
 
-                <div className='col-md-2'>
+                <div className='col-lg-2'>
                     <FiltersArea />
                 </div>
 
-                <div className='col-md-10'>
+                <div className='col-lg-10'>
 
-                    <div className='row d-flex'>
+                    <div className='row d-flex justify-content-lg-start justify-content-center'>
                         <h2>Products - {search.category === '' ? 'All' : categories.map(el => {
                         if (el._id === search.category) {
                             return el.name
@@ -80,7 +80,7 @@ const ShopPage = () => {
                     </div>
 
                     
-                    <div className='row d-flex flex-wrap'>
+                    <div className='row d-flex flex-wrap justify-content-lg-start justify-content-center'>
                     {
                         loading ? <Skeleton style={{width: 300, height: 409 }} active></Skeleton> : 
                         (

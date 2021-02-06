@@ -30,8 +30,6 @@ exports.removeFromWishlist = async (req, res) => {
 
     const { id } = req.body;
 
-    const user = await User.findOne({ email: req.user.email }).exec();
-
     try {
 
         const removeItem = await User.findOneAndUpdate(
@@ -40,11 +38,16 @@ exports.removeFromWishlist = async (req, res) => {
             { new: true }
         ).exec();
 
-        res.json(removeItem);
+        if (removeItem) {
+            res.json('ok');
+        } else {
+            res.status(400).json({ message: 'There was a problem removing the item'})
+        }
+
 
     } catch (err) {
 
-        res.status(400).json({ message: 'There was a problem removing the item'})
+        res.status(401).json({ message: 'Error'})
     }
 };
 

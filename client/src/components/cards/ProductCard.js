@@ -6,7 +6,7 @@ import { EditOutlined, DeleteOutlined, ShoppingCartOutlined, EyeOutlined } from 
 import StarRatings from 'react-star-ratings';
 import ProductRating from '../product/ProductRating';
 import { updateUserCart, getCartItems } from '../../utility/dbCart';
-import { removeFromWishlist } from '../../utility/dbWishlist';
+import { removeFromWishlist, getWishlist } from '../../utility/dbWishlist';
 import { formatPrice } from '../../utility/formatPrice';
 import { toast } from 'react-toastify';
 
@@ -14,7 +14,7 @@ const { Meta } = Card;
 
 const ProductCard = props => {
 
-    const { product, type, setRefresh, refresh } = props;
+    const { product, type, setWishlist } = props;
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
@@ -86,13 +86,17 @@ const ProductCard = props => {
                         {product.quantity > 0 ? !user ? 'Login' : 'Add to cart' : 'Out of stock'}
                         <ShoppingCartOutlined key="Add to cart" onClick={() => history.push(`/admin/product/delete/${product._id}`)} />
                     </div>,
-                    <div className='d-flex justify-content-around align-items-center' onClick={() => {
-                        removeFromWishlist(user.token, product._id)
-                            .then(() =>{
-                                toast.succes('Product removed');
-                                setRefresh(!refresh);
-                            })
-                            .catch(err => toast.error('Error'))
+                    <div 
+                        className='d-flex justify-content-around align-items-center' 
+                        onClick={() => {
+                            removeFromWishlist(user.token, product._id)
+                                .then(r1 => {
+                                    console.log(r1);
+                                    getWishlist(user.token)
+                                        .then(res => setWishlist(res.data))
+                                        .catch(err => console.log(err))
+                                })
+                                .catch(err => toast.error(err))
                     }}>
                         Remove from wishlist
                     <ShoppingCartOutlined key="Add to cart" />
