@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card } from 'antd';
@@ -19,10 +19,7 @@ const ProdCard = props => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-    const [refresh, setRefresh] = useState(false);
-    const [index, setIndex] = useState(-1);
 
-    console.log('rerender');
 
     // update the cart and set the new cart items count when card button is clicked
     const updateCart = (product) => {
@@ -70,7 +67,6 @@ const ProdCard = props => {
         // remove from wishlist
         removeFromWishlist(token, id)
             .then(response => {
-                console.log(response);
                 dispatch({
                     type: 'SET_WISHLIST',
                     payload: response.data.wishlist

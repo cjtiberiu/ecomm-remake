@@ -2,10 +2,10 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card } from 'antd';
-import { ShoppingCartOutlined, HeartOutlined, StarOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, HeartOutlined, StarOutlined, HeartFilled } from '@ant-design/icons';
 import { formatPrice } from '../../utility/formatPrice';
 import { updateUserCart, getCartItems } from '../../utility/dbCart';
-import { addToWishlist } from '../../utility/dbWishlist';
+import { addToWishlist, removeFromWishlist, getWishlist } from '../../utility/dbWishlist';
 import { toast } from 'react-toastify';
 
 import RatingModal from '../modal/RatingModal';
@@ -16,6 +16,9 @@ const ProductDetails = props => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const products = useSelector(state => state.products);
+
+
 
     const updateCart = (product) => {
 
@@ -37,18 +40,53 @@ const ProductDetails = props => {
     };
 
     const updateWishlist = () => {
-        
         // add to wishlsit
         addToWishlist(user.token, product)
             .then(res => {
                 if (res.data.message === 'ok') {
-                    toast.success('Product addded to wishlist');
+                    dispatch({
+                        type: 'SET_WISHLIST',
+                        payload: res.data.wishlist
+                    })
                 } else {
                     toast(res.data.message);
                 }
                 
             })
             .catch(err => console.log(err));
+    }
+
+    const removeItemFromWishlist = (token, id) => {
+        // remove from wishlist
+        removeFromWishlist(token, id)
+            .then(response => {
+                dispatch({
+                    type: 'SET_WISHLIST',
+                    payload: response.data.wishlist
+                });
+                
+            })
+            .catch(err => toast.error(err))
+    }
+
+
+    const getIndex = () => {
+        return products.wishlist.indexOf(product._id);
+    }
+
+    const renderHeartIcon = () => {
+        const index = getIndex()
+        return index !== -1
+            ? <HeartFilled className='text-danger' key="wishlist" />
+            : <HeartOutlined key='wishlist' />
+    }
+
+    const controlWishlist = () => {
+        const index = getIndex();
+        return index === -1
+            ? updateWishlist()
+            : removeItemFromWishlist(user.token, product._id)
+        
     }
 
     return (
@@ -59,9 +97,9 @@ const ProductDetails = props => {
                     Add to cart
                     <ShoppingCartOutlined key="cart" />
                 </div>,
-                <div className='d-flex flex-column' onClick={() => !user ? history.push('/login') : updateWishlist()}>  
-                    Add to wishlist
-                    <HeartOutlined key="wishlist" />
+                <div className='d-flex flex-column' onClick={() => !user ? history.push('/login') : controlWishlist()}>  
+                    { getIndex() === -1 ? 'Add to wishlist' : 'Remove from wishlist'}
+                    { renderHeartIcon() }
                 </div>,
                 <div className='d-flex flex-column' onClick={() => !user ? history.push('/login') : setRatingModal(true)}>
                     {!user ? 'Login to Leave Reting' : 'Rating'}

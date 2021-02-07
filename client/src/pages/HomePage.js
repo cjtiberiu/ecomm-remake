@@ -18,7 +18,6 @@ const HomePage = () => {
                     <li>USER DASHBOARD WITH ORDER HISTORY</li>
                     <li>FRONTEND & BACKEND PROTECTED ROUTES</li>
                     <li>FILTERING</li>
-                    <li>PAYMENTS WITH STRIPE</li>
                     <li>ERROR BOUNDARY</li>
                     <li>REACT LAZY + SUSPENSE</li>
                 </ul>
