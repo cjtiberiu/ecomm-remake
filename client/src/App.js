@@ -23,6 +23,9 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import Header from './components/navigation/Header';
 import MobileNav from './components/navigation/MobileNav';
 
+// cart drawer
+import CartDrawer from './components/navigation/CartDrawer';
+
 // error boundary
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
@@ -39,9 +42,11 @@ import { auth } from './firebase/firebase.utils';
 import { getUser } from "./utility/dbAuth";
 import { getProductsCount } from './utility/dbProduct';
 import { getCartItems } from './utility/dbCart';
+import { getWishlist } from './utility/dbWishlist';
 
 // spinner
 import Spinner from './components/spinner/Spinner';
+
 
 // react lazy
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -92,6 +97,16 @@ const App = () => {
 					})
 				})
 				.catch(err => console.log(err))
+
+			// store wishlist products to redux
+			getWishlist(idTokenResult.token)
+				.then(res => {
+					dispatch({ 
+						type: 'SET_WISHLIST', 
+						payload: res.data.map(el => el._id)
+					});
+				})
+				.catch(err => console.log(err))
           }
 		});
         // cleanup
@@ -118,8 +133,10 @@ const App = () => {
 				<MobileNav />
 			</div> 
 
+			
+
 			<div className='container-fluid'>
-             
+            
 				<ToastContainer></ToastContainer>
 				<Switch>
 					

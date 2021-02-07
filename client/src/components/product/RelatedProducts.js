@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getRelated } from '../../utility/dbProduct';
-import ProductCard from '../cards/ProductCard';
+import ProdCard from '../cards/ProdCard';
 
 const RelatedProducts = props => {
 
@@ -28,7 +28,7 @@ const RelatedProducts = props => {
                 {
                     relatedProducts.filter(product => product._id !== productToRemove).map(product => {
                         return (
-                            <ProductCard key={product._id} product={product} />
+                            <ProdCard key={product._id} product={product} type='user' />
                         )
                     })
                 }

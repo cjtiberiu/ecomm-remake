@@ -4,6 +4,7 @@ import { getCategories } from '../utility/dbCategory';
 import { getProducts, getSortedProducts, getFilteredProducts } from '../utility/dbProduct';
 import { Skeleton } from 'antd';
 import ProductCard from '../components/cards/ProductCard';
+import ProdCard from '../components/cards/ProdCard';
 import PageControl from '../components/pagination/PageControl';
 import FiltersArea from '../components/forms/FiltersArea';
 import CartDrawer from '../components/navigation/CartDrawer';
@@ -19,6 +20,7 @@ const ShopPage = () => {
     const [productsCount, setProductsCount] = useState(0);
     const [categories, setCategories] = useState([]);
     const search = useSelector(state => state.search);
+    const wishlist = useSelector(state => state.products.wishlist);
 
     useEffect(() => {
         setLoading(true);
@@ -85,7 +87,7 @@ const ShopPage = () => {
                         loading ? <Skeleton style={{width: 300, height: 409 }} active></Skeleton> : 
                         (
                             products.length === 0 ? 'No Products to show' : products.map(el => {
-                                return <ProductCard key={el._id} type='user' product={el} />
+                                return <ProdCard key={el._id} type='user' product={el} />
                             })
                         )
 
@@ -93,7 +95,7 @@ const ShopPage = () => {
                     }
                     </div>   
 
-                    <CartDrawer />   
+                    <CartDrawer /> 
 
                     <div className='row d-flex justify-content-center mt-3 pb-5'>
                         <PageControl currentPage={currentPage} setCurrentPage={setCurrentPage} productsPerPage={productsPerPage} productsCount={productsCount} />

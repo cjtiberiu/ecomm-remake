@@ -20,7 +20,12 @@ exports.addToWishlist = async (req, res) => {
             { new: true }
         ).exec()
 
-        res.json({ message: 'ok' });
+        const items = await User
+            .findOne({ email: req.user.email })
+            .select('wishlist')
+            .exec();
+
+        res.json({ message: 'ok', wishlist: items.wishlist });
     } else {
         res.json({ message: 'Item already added' });
     }
@@ -38,8 +43,13 @@ exports.removeFromWishlist = async (req, res) => {
             { new: true }
         ).exec();
 
+        const items = await User
+            .findOne({ email: req.user.email })
+            .select('wishlist')
+            .exec();
+
         if (removeItem) {
-            res.json('ok');
+            res.json({ message: 'ok', wishlist: items.wishlist });
         } else {
             res.status(400).json({ message: 'There was a problem removing the item'})
         }

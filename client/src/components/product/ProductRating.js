@@ -33,9 +33,9 @@ const ProductRating = props => {
                 starDimension='20px'
             />
             <div style={{ fontSize: '16px', marginTop: -3, marginLeft: 10 }}>
-            {
-                `(${rating.toFixed(1)})`
-            }
+            {/* {
+                `${rating.toFixed(1)}`
+            } */}
             </div>
         </div>
         

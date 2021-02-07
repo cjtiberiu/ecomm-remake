@@ -29,9 +29,9 @@ const CartProduct = props => {
             <div style={styles.normal}>Color: {product.color}</div>
             {
                 type === 'cart' ? (
-                    <div style={styles.normal}><LeftOutlined onClick={() => updateCart(product, 'minus')} style={{ cursor: 'pointer' }} /> Quantity: {product.qty} <RightOutlined onClick={() => updateCart(product, 'plus')} style={{ cursor: 'pointer'}} /></div>
+                    <div style={styles.normal}><LeftOutlined onClick={() => updateCart(product, 'minus')} style={{ cursor: 'pointer' }} /> <span className='d-none d-lg-flex'>Quantity</span> {product.qty} <RightOutlined onClick={() => updateCart(product, 'plus')} style={{ cursor: 'pointer'}} /></div>
                 ) : (
-                    <div style={styles.normal}> Quantity: {product.qty}</div>
+                    <div style={styles.normal}> Quantity  {product.qty}</div>
                 )
             }
             

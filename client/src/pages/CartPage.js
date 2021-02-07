@@ -65,13 +65,13 @@ const CartPage = props => {
     return (
         <div>
             <div className='row'>
-                <div className='col-md-10 mt-3'>
+                <div className='col-md-10 mt-3 d-flex justify-content-lg-start justify-content-center'>
                     <h3>Cart Page - {cart.itemsCount} items </h3>
                 </div>
             </div>
             
             <div className='row'>
-                <div className='col-md-8 d-flex flex-column align-items-center justify-content-center'>
+                <div className='w-100 col-md-8 d-flex flex-column align-items-center justify-content-center'>
                     {
                         cart.items.map(el => {
                             return <CartProduct type='cart' key={el._id} product={el} updateCart={updateCart} />

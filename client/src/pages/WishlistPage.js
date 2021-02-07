@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { getWishlist } from '../utility/dbWishlist';
-import ProductCard from '../components/cards/ProductCard';
+import ProdCard from '../components/cards/ProdCard';
+import CartDrawer from '../components/navigation/CartDrawer';
 
 const WishlistPage = props => {
 
@@ -15,28 +16,38 @@ const WishlistPage = props => {
     useEffect(() => {
         if (user) {
             getWishlist(user.token)
-                .then(res => setWishlist(res.data))
+                .then(res => {
+                    setWishlist(res.data);
+                    dispatch({ type: 'SET_WISHLIST', payload: res.data.map(el => el._id)});
+                })
                 .catch(err => console.log(err))
         }
         
     }, [refresh, user])
 
     return (
-        <div className='mt-3'>
-            <h2>Wishlist</h2>
+        <div className='mt-lg-3 mt-5'>
+            <div className='d-flex justify-content-lg-start justify-content-center'>
+                <h2 className='mt-lg-0 mt-3'>Wishlist</h2>
+            </div>
+
+            <CartDrawer />
+            
             {
                 !user ? (
                     <div>You have to <Link to='/register'>register</Link> or <Link to='/login'>login</Link> to add to wishlist</div>
                 ) : (
-                    <div className='d-flex'>
+                    <div className='d-flex flex-wrap'>
                         {
                             wishlist.length === 0 ? 'No products to show' : wishlist.map(el => {
-                                return <ProductCard key={el._id} product={el} type='wish' setWishlist={setWishlist} />
+                                return <ProdCard key={el._id} product={el} type='wish' setWishlist={setWishlist} />
                             })
                         }
                     </div>
                 )
             }
+
+            
         </div>
     )
 };
