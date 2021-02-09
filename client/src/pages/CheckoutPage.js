@@ -60,7 +60,7 @@ const CheckoutPage = props => {
                             <Button 
                                 type='primary' 
                                 onClick={() => {
-                                    if (addreess !== '') {
+                                    if (address !== '') {
                                         addOrder(user.token, cart.items)
                                             .then(res => toast.succes('Order completed'))
                                             .catch(err => console.log(err))
