@@ -16,10 +16,6 @@ const userNav = () => {
                 </li>
 
                 <li className='nav-item'>
-                    <Link to='/user/wishlist' className='nav-link border border-bottom-5'>Wishlist</Link> 
-                </li>
-
-                <li className='nav-item'>
                     <Link to='/user/orders' className='nav-link border border-bottom-5'>Orders</Link> 
                 </li>
             </ul>

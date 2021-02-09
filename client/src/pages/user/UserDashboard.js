@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
+import OrderDetails from './OrderDetails';
 import UserNav from '../../components/navigation/UserNav';
 import ChangePassword from './ChangePassword';
 import Wishlist from './Wishlist';
@@ -29,6 +29,7 @@ const UserDashboard = () => {
                 <Route exact path='/user/changepassword' component={ChangePassword} />
                 <Route exact path='/user/wishlist' component={Wishlist} />
                 <Route exact path='/user/orders' component={Orders} />
+                <Route exact path='/user/orders/:orderid' component={OrderDetails} />
             </div>
         </div>
     )

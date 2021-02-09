@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getUserOrders } from '../../utility/dbOrder';
 import { formatPrice } from '../../utility/formatPrice';
@@ -7,6 +8,7 @@ const Orders = () => {
 
     const [orders, setOrders] = useState([]);
     const user = useSelector(state => state.user);
+    const history = useHistory();
 
     useEffect(() => {
         if (user) {
@@ -38,11 +40,11 @@ const Orders = () => {
                                     <div className='d-flex align-items-center'>
                                         <button 
                                             className='btn btn-danger'
-                                            onClick={() => console.log('delete')}
+                                            onClick={() => history.push(`/user/orders/${el._id}`)}
                                             type="light" 
                                             shape="round" 
                                             size='small'
-                                        >Delete</button>
+                                        >Details</button>
                                     </div>
                                 </div>
                             )
