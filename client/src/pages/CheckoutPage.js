@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartProduct from '../components/product/CartProduct';
 import { Button } from 'antd';
@@ -12,6 +13,7 @@ const CheckoutPage = props => {
     const [newAddress, setNewAddress] = useState('');
     const cart = useSelector(state => state.cart);
     const user = useSelector(state => state.user);
+    const history = useHistory();
 
     const styles = {
         title: {
@@ -62,7 +64,10 @@ const CheckoutPage = props => {
                                 onClick={() => {
                                     if (address !== '') {
                                         addOrder(user.token, cart.items)
-                                            .then(res => toast.succes('Order completed'))
+                                            .then(() => {
+                                                history.push('/user/dashboard');
+                                                toast.succes('Order completed');
+                                            })
                                             .catch(err => console.log(err))
                                     } else {
                                         toast.error('You must add a delivery address');
