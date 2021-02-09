@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CartProduct from '../components/product/CartProduct';
 import { Button } from 'antd';
 import { addOrder } from '../utility/dbOrder';
 import DeliveryAddress from '../components/forms/DeliveryAddress';
+import { toast } from 'react-toastify';
 
 const CheckoutPage = props => {
 
+    const [address, setAddress] = useState('');
+    const [newAddress, setNewAddress] = useState('');
     const cart = useSelector(state => state.cart);
     const user = useSelector(state => state.user);
 
@@ -33,7 +36,7 @@ const CheckoutPage = props => {
 
             <div className='row'>
                 <div className='col-md-10 mt-3'>
-                    <DeliveryAddress />
+                    <DeliveryAddress address={address} setAddress={setAddress} newAddress={newAddress} setNewAddress={setNewAddress} />
                 </div>
             </div>
 
@@ -57,9 +60,14 @@ const CheckoutPage = props => {
                             <Button 
                                 type='primary' 
                                 onClick={() => {
-                                    addOrder(user.token, cart.items)
-                                        .then(res => alert('succes'))
-                                        .catch(err => console.log(err))
+                                    if (addreess !== '') {
+                                        addOrder(user.token, cart.items)
+                                            .then(res => toast.succes('Order completed'))
+                                            .catch(err => console.log(err))
+                                    } else {
+                                        toast.error('You must add a delivery address');
+                                    }
+                                    
                                 }}
                             >Pay</Button>
                         </div>

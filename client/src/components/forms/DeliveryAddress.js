@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 
 const DeliveryAddress = props => {
 
-    const [address, setAddress] = useState('');
-    const [newAddress, setNewAddress] = useState('');
+    const { address, setAddress, newAddress, setNewAddress } = props;
+
     const user = useSelector(state => state.user);
 
     // UTILITY FUNCITON
@@ -29,7 +29,7 @@ const DeliveryAddress = props => {
     const changeAddress = (e) => {
         updateUserAddress(user.token, newAddress)
             .then(() => {
-                toast.success('Succes');
+                toast.success('Address updated');
                 getUserAddress(user.token)
                     .then(res => {
                         setAddress(res.data)
