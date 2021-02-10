@@ -14,7 +14,7 @@ const DeleteCategory = props => {
         getCategory(match.params.slug)
             .then(res => setName(res.data.category.name))
             .catch(err => console.log(err));
-    }, [])
+    }, [match.params.slug])
 
     // detele the category and display a succes message using toast
     const handleDelete = (e) => {

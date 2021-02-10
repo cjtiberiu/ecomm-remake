@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Radio, Input, Row } from 'antd';
+import { Radio, Row } from 'antd';
 
 const brands = ['Apple', 'Samsung', 'Microsoft', 'Lenovo', 'Asus', 'Dell'];
 

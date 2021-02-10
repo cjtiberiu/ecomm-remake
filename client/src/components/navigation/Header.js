@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import firebase from 'firebase'
 
 // ANT Design imports
 import { Menu } from 'antd';
-import { MailOutlined, HeartOutlined, SettingOutlined, UserOutlined, UserAddOutlined, LogoutOutlined, ShopOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { HeartOutlined, SettingOutlined, UserOutlined, UserAddOutlined, LogoutOutlined, ShopOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 import SearchInput from '../forms/SearchInput';
 
@@ -39,30 +39,29 @@ const Header = props => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-    const products = useSelector(state => state.products);
     const cart = useSelector(state => state.cart);
-    const [current, setCurrent] = useState('');
-    const [refresh, setRefresh] = useState(false);
+    //const [current, setCurrent] = useState('');
+    //const [refresh, setRefresh] = useState(false);
     const nav = useSelector(state => state.nav);
     
     const handleClick = (e) => {
-        setCurrent(e.key);
+        dispatch({ type: 'SET_CURRENT', payload: e.key});
     }
 
     // set the active header item based on window location
     useEffect(() => {
         if (!history.location.pathname.split('/')[1]) {
-            setCurrent('home');
+            //setCurrent('home');
             dispatch({ type: 'SET_CURRENT', payload: 'home'});
         }
-        setCurrent(history.location.pathname.split('/')[1]);
+        //setCurrent(history.location.pathname.split('/')[1]);
         dispatch({ type: 'SET_CURRENT', payload: history.location.pathname.split('/')[1]});
-    }, [history.location.pathname])
+    }, [history.location.pathname, dispatch])
 
     // set the number of cart items
-    useEffect(() => {
-        setRefresh(!refresh)
-    }, [cart.itemsCount])
+    // useEffect(() => {
+    //     setRefresh(!refresh)
+    // }, [cart.itemsCount])
 
     // logout the user
     const logout = () => {
@@ -110,7 +109,7 @@ const Header = props => {
                             <Link to='/register'>Register</Link>
                         </Item>
 
-                        <SearchInput setCurrent={setCurrent} />
+                        <SearchInput />
                     </>
                 )
             }
@@ -137,7 +136,7 @@ const Header = props => {
     
                         </SubMenu>
 
-                        <SearchInput setCurrent={setCurrent} />
+                        <SearchInput />
 
                     </>
                 )

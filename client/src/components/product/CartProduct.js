@@ -1,5 +1,4 @@
 import React from 'react';
-import { Divider } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { formatPrice } from '../../utility/formatPrice';
 

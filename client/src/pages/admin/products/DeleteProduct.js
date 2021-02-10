@@ -13,7 +13,7 @@ const DeleteProduct = props => {
         getProduct(match.params.id)
             .then(res => setProduct(res.data))
             .catch(err => console.log(err));
-    }, [])
+    }, [match.params.id])
 
     const handleDelete = (e) => {
         e.preventDefault();

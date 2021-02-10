@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getCategories } from '../../utility/dbCategory';
 
-import { Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-
 import ListCategories from './category/ListCategories';
 import SearchFilter from '../../components/forms/SearchFilter';
 

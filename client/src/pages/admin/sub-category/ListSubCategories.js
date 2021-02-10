@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { filteredArray } from '../../../utility/filters';
-import { getCategories } from '../../../utility/dbCategory';
 
 const ListSubCategories = props => {
 
@@ -19,11 +18,7 @@ const ListSubCategories = props => {
 
                                 <div className='border bg-light pl-1 mb-1 d-flex justify-content-between align-items-center' key={el.slug}>
                                     {
-                                        categories.map(category => {
-                                            if (el.parent === category._id) {
-                                                return <div key={category._id}>{el.name} - {category.name}</div>
-                                            }
-                                        })    
+                                        categories.map(category => el.parent === category._id ? <div key={category._id}>{el.name} - {category.name}</div> : null)    
                                     }
                                     <div className='d-flex align-items-center'>
                                         <button 

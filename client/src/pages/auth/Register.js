@@ -13,7 +13,7 @@ const Register = props => {
     useEffect(() => {
         // Redirect user to homepage if user is already logged in
         if (user && user.token) history.push('/');
-    }, [user])
+    }, [user, history])
 
 
     const handleSubmit = (e) => {

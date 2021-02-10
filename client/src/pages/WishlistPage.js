@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getWishlist } from '../utility/dbWishlist';
 import ProdCard from '../components/cards/ProdCard';
 import CartDrawer from '../components/navigation/CartDrawer';
@@ -9,7 +9,6 @@ const WishlistPage = props => {
 
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const history = useHistory();
     const [wishlist, setWishlist] = useState([]);
     const [refresh, setRefresh] = useState(false);
 
@@ -23,7 +22,7 @@ const WishlistPage = props => {
                 .catch(err => console.log(err))
         }
         
-    }, [refresh, user])
+    }, [user, dispatch, refresh])
 
     return (
         <div className='mt-lg-3 mt-5'>

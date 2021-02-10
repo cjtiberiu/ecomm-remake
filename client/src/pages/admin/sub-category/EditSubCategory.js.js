@@ -29,7 +29,7 @@ const EditSubCategory = props => {
         getCategories()
             .then(res => setCategories(res.data.categories))
             .catch(err => console.log(err))
-    }, [])
+    }, [match.params.slug])
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -15,7 +15,7 @@ const EditCategory = props => {
         getCategory(match.params.slug)
             .then(res => setName(res.data.category.name))
             .catch(err => console.log(err));
-    }, [])
+    }, [match.params.slug])
 
     // update the new category
     const handleSubmit = (e) => {

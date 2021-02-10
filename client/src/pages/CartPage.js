@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCartItems, updateUserCart } from '../utility/dbCart';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Divider, Button, Tag } from 'antd';
 import { formatPrice } from '../utility/formatPrice';
 import CartProduct from '../components/product/CartProduct';
@@ -23,7 +22,7 @@ const CartPage = props => {
                 .then(res => dispatch({ type: 'GET_CART_ITEMS', payload: res.data }))
                 .catch(err => console.log(err))
         }
-    }, [user, refresh])
+    }, [user, refresh, dispatch])
 
     // set the total cart amount every time cart items array changes
     useEffect(() => {
@@ -68,7 +67,7 @@ const CartPage = props => {
             <div className='row mt-5 mt-lg-0'>
                 <div className='col-md-10 mt-4 d-flex justify-content-lg-start justify-content-center align-items-start'>
                     <h3>Cart</h3>
-                    <Tag color='green' className='ml-2'>{cart.itemsCount} items</Tag>
+                    <Tag color='green' className='ml-2'>{cart.itemsCount} {`${cart.itemsCount === 1 ? 'item' : 'items'}`}</Tag>
                 </div>
             </div>
             

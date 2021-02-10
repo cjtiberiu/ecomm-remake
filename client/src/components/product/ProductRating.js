@@ -21,7 +21,7 @@ const ProductRating = props => {
             }
         } 
 
-    })
+    }, [product.ratings])
 
     return (
             <StarRatings

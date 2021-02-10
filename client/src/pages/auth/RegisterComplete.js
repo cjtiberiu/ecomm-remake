@@ -14,7 +14,7 @@ const Register = props => {
 
     useEffect(() => {
         setEmail(window.localStorage.getItem('emailForRegistration', email));
-    }, [])
+    }, [email])
 
     const handleSubmit = async (e) => {
 

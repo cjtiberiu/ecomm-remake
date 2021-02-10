@@ -1,6 +1,4 @@
-const INITIAL_STATE = {
-    email: '',
-}
+
 
 const userReducer = (state = null, action) => {
     switch(action.type) {

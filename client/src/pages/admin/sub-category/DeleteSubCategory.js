@@ -13,7 +13,7 @@ const DeleteSubCategory = props => {
         getSubCategory(match.params.slug)
             .then(res => setName(res.data.category.name))
             .catch(err => console.log(err));
-    }, [])
+    }, [match.params.slug])
 
     const handleDelete = (e) => {
         e.preventDefault();

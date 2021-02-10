@@ -1,12 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { filteredArray } from '../../../utility/filters';
 import ProductCard from '../../../components/cards/ProductCard';
 
 const ListProducts = props => {
 
     const { products, keyword} = props;
-    const history = useHistory();
 
     return (
         <div className='row mt-2 '>

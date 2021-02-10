@@ -5,10 +5,9 @@ import { Card } from 'antd';
 import { ShoppingCartOutlined, HeartOutlined, StarOutlined, HeartFilled } from '@ant-design/icons';
 import { formatPrice } from '../../utility/formatPrice';
 import { updateUserCart, getCartItems } from '../../utility/dbCart';
-import { addToWishlist, removeFromWishlist, getWishlist } from '../../utility/dbWishlist';
+import { addToWishlist, removeFromWishlist } from '../../utility/dbWishlist';
 import { toast } from 'react-toastify';
 
-import RatingModal from '../modal/RatingModal';
 
 const ProductDetails = props => {
 
@@ -92,7 +91,10 @@ const ProductDetails = props => {
     return (
         <Card
             style={{ width: '100%' }}
-            actions={[
+            actions={
+                !user ? [
+                    <div onClick={() => history.push('/login')}>Log in to use functionality</div>
+                ] : [
                 <div className='d-flex flex-column' onClick={() => !user ? history.push('/login') : updateCart(product)}>  
                     Add to cart
                     <ShoppingCartOutlined key="cart" />

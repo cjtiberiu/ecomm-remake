@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Input } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchedProducts } from '../../utility/dbProduct';
+import { useDispatch } from 'react-redux';
 import { SearchOutlined } from '@ant-design/icons';
 
 
 const SearchInput = props => {
 
-    const { Search } = Input;
-    const { setCurrent } = props;
     const history = useHistory();
     const dispatch = useDispatch();
-    const search = useSelector(state => state.search);
 
     // set the search query to redux state
     const onSearch = e => {  
@@ -30,7 +26,7 @@ const SearchInput = props => {
         e.preventDefault();
 
         if (history.location.pathname !== '/products') {
-            setCurrent('products');
+            dispatch({ type: 'SET_CURRENT', payload: 'products'});
             history.push('/products')
         }
     }

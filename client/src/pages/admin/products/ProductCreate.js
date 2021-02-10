@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getCategories } from '../../../utility/dbCategory';
 import { getSubCategories } from '../../../utility/dbSub';
-import { Form, Input, InputNumber, Button, Radio } from 'antd';
+import { Form, Input, InputNumber, Radio } from 'antd';
 
 import ImageUpload from '../../../components/forms/ImageUpload';
 
-import { createProduct, createproduct } from '../../../utility/dbProduct';
+import { createProduct } from '../../../utility/dbProduct';
 import { toast } from 'react-toastify';
 
 // Ant design
@@ -121,11 +121,7 @@ const ProductCreate = props => {
                     >
                         {
                             !subs ? null : (
-                                subs.map(el => {
-                                    if (el.parent === product.category) {
-                                        return <Option key={el._id} value={`${el._id}`}>{el.name}</Option>
-                                    }
-                                })
+                                subs.map(el => el.parent === product.category ? <Option key={el._id} value={`${el._id}`}>{el.name}</Option> : null)
                             )
                         }
                     </Select>

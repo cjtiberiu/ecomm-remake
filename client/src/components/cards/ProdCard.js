@@ -8,9 +8,8 @@ import { updateUserCart, getCartItems } from '../../utility/dbCart';
 import { addToWishlist, removeFromWishlist, getWishlist } from '../../utility/dbWishlist';
 import { formatPrice, limitTitle } from '../../utility/formatPrice';
 import { toast } from 'react-toastify';
-import { set } from 'mongoose';
 
-const { Meta } = Card;
+//const { Meta } = Card;
 
 const ProdCard = props => {
 
@@ -116,6 +115,8 @@ const ProdCard = props => {
                 type === 'admin' ? [
                     <EditOutlined key="edit" onClick={() => history.push(`/admin/product/edit/${product._id}`)} />,
                     <DeleteOutlined key="delete" onClick={() => history.push(`/admin/product/delete/${product._id}`)} />,
+                ] : !user ? [
+                    <div onClick={() => history.push('/login')}>Log in to use functionality</div>
                 ] : [
                     <div 
                         className='d-flex justify-content-center' 

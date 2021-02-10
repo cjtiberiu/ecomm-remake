@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Card, Divider, Menu } from 'antd';
+import { useDispatch } from 'react-redux';
+import { Menu } from 'antd';
 
-import SearchInput from './SearchInput';
+
 import PriceFilter from './PriceFilter';
-import CategoryFilter from './CategoryFilter';
 import StarsFilter from './StarsFilter';
 import ColorFilter from './ColorFilter';
 import BrandFilter from './BrandFilter';
@@ -16,7 +15,6 @@ const FiltersArea = props => {
     const { SubMenu } = Menu;
     const [categories, setCategories] = useState([]);
     const dispatch = useDispatch();
-    const search = useSelector(state => state.search);
     const [selectedKeys, setSelectedKeys] = useState('all')
 
     // get the categories from the db that will be used with the select component

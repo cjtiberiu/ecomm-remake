@@ -12,7 +12,7 @@ const RelatedProducts = props => {
         getRelated(sub)
             .then(res => setRelatedProducts(res.data))
             .catch(err => console.log(err))
-    }, [])
+    }, [sub])
 
     return (
         <div className='col-md-10'>

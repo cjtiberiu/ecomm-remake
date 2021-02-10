@@ -1,5 +1,5 @@
 export const formatPrice = number => {
-    let numSplit, int, dec;
+    let numSplit, int;
 
     number = Math.abs(number);
     number = number.toFixed(2);
@@ -12,8 +12,6 @@ export const formatPrice = number => {
 
         int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
     }
-
-    dec = numSplit[1];
 
     return int;
 };

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 import './AdminNav.css';
 

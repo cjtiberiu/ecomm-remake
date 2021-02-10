@@ -1,9 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, Skeleton } from 'antd';
+import { Card } from 'antd';
 import { EditOutlined, DeleteOutlined, ShoppingCartOutlined, EyeOutlined } from '@ant-design/icons';
-import StarRatings from 'react-star-ratings';
 import ProductRating from '../product/ProductRating';
 import { updateUserCart, getCartItems } from '../../utility/dbCart';
 import { removeFromWishlist, getWishlist } from '../../utility/dbWishlist';

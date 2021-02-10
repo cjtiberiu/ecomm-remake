@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getProduct } from '../utility/dbProduct';
-import { Card, Divider } from 'antd';
+import { Divider } from 'antd';
 import Tabs from '../components/product/Tabs';
 import RelatedProducts from '../components/product/RelatedProducts';
 import ProductDetails from '../components/product/ProductDetails';
@@ -10,14 +10,14 @@ import RatingModal from '../components/modal/RatingModal';
 
 const ProductPage = props => {
 
-    const { match, history } = props;
+    const { match } = props;
 
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState({
+        ratings: [],
+    });
     const [bigImage, setBigImage] = useState('');
-    const [carouselNumber, setCarouselNumber] = useState(0);
     const [ratingModal, setRatingModal] = useState(false);
 
-    const { Meta } = Card;
 
     // get the product fron db based on params and set the default displayed image
     useEffect(() => {
@@ -37,12 +37,6 @@ const ProductPage = props => {
             .catch(err => console.log(err));
     }, [match.params.id])
 
-    
-    const onChange = (number) => {
-        if (product.images.length > 0) {
-            setBigImage(product.images[number].url)
-        }
-    }
 
     return (
         <div className='container-fluid pb-5 mt-5'>
@@ -64,7 +58,7 @@ const ProductPage = props => {
                     <div className='row justify-content-center'>
                         {
                             !product.images ? null : product.images.map((image, index) => {
-                                return <img key={image.public_id} onClick={() => setBigImage(image.url)} style={{ marginRight: '2px', width: '100px', height: '90px', outline: `${image.url === bigImage ? '1px solid lightblue' : ''}`}} src={`${image.url}`} />
+                                return <img key={image.public_id} alt={image.url} onClick={() => setBigImage(image.url)} style={{ marginRight: '2px', width: '100px', height: '90px', outline: `${image.url === bigImage ? '1px solid lightblue' : ''}`}} src={`${image.url}`} />
                             })
                         }
                     </div>
@@ -78,6 +72,8 @@ const ProductPage = props => {
                     <h1>{product.title}</h1>
 
                     <ProductRating product={product} />
+
+                    <div>{product.ratings.length === 0 ? `No reviews` : product.ratings.length === 1 ? `1 review` : `${product.ratings.length} reviews`}</div>
 
                     <ProductDetails setRatingModal={setRatingModal} product={product} />
 

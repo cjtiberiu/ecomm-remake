@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { getCategories } from '../../utility/dbCategory';
 //import { Menu } from 'antd';
 
 const CategoryFilter = props => {
 
-    const { SubMenu, Item } = props;
-    const search = useSelector(state => state.search);
-    const dispatch = useDispatch();
+    const { Item } = props;
     const [categories, setCategories] = useState([]);
 
     // get

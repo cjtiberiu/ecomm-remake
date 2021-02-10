@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Radio, Row, Input } from 'antd';
+import { Radio, Row } from 'antd';
 import StarRatings from 'react-star-ratings';
 
 const StarsFilter = props => {
 
-    const [values, setValues] = useState([]);
     const dispatch = useDispatch();
     const search = useSelector(state => state.search);
 
@@ -16,12 +15,6 @@ const StarsFilter = props => {
             payload: e.target.value
         })
     }
-
-    const radioStyle = {
-        display: 'block',
-        height: '30px',
-        lineHeight: '30px',
-    };
 
     return (
         <Radio.Group onChange={onChange} defaultValue={search.stars}>

@@ -25,7 +25,7 @@ const OrderDetails = props => {
                 .catch(err => console.log(err))
         }
         
-    }, [user])
+    }, [user, props.match.params.orderid])
 
     return (
         <div className='col-md-10'>

@@ -14,7 +14,7 @@ const ForgotPassword = props => {
     useEffect(() => {
         // Redirect user to homepage if user is already logged in
         if (user && user.token) history.push('/');
-    }, [user])
+    }, [user, history])
 
     // firebase reset password link utility
     const handleSubmit = async (e) => {

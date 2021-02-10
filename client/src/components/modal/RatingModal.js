@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import StarRatings from 'react-star-ratings';
@@ -23,7 +23,7 @@ const RatingModal = props => {
             }
             
         }
-    }, [product])
+    }, [product, user])
 
     return (
 

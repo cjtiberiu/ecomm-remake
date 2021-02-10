@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Slider, Menu } from 'antd';
+import { Slider } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPriceRange } from '../../utility/dbProduct';
 
-const { SubMenu, Item } = Menu;
+//const { SubMenu, Item } = Menu;
 
 const PriceFilter = props => {
 
     const dispatch = useDispatch();
     const [minValue, setMinValue] = useState(0);
     const [maxValue, setMaxValue] = useState(100);
-    const [price, setPrice] = useState([minValue, maxValue]);
     const search = useSelector(state => state.search);
 
     // get the min and max product prices from api endpoint
@@ -28,7 +27,7 @@ const PriceFilter = props => {
                 
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [search.query, dispatch])
 
     return (
         

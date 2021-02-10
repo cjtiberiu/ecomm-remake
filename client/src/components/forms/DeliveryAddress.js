@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Input, Button } from 'antd';
 import { updateUserAddress, getUserAddress } from '../../utility/dbUser';
@@ -21,7 +21,7 @@ const DeliveryAddress = props => {
                 })
                 .catch(err => console.log(err))
         }
-    }, [user])
+    }, [user, setAddress, setNewAddress])
 
     // UTILITY FUNCTION
     // update the user address in db when button is clicked

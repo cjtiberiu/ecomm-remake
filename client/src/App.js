@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 // toastify
 import { ToastContainer } from 'react-toastify';
@@ -22,9 +22,6 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 // header component
 import Header from './components/navigation/Header';
 import MobileNav from './components/navigation/MobileNav';
-
-// cart drawer
-import CartDrawer from './components/navigation/CartDrawer';
 
 // error boundary
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -122,7 +119,7 @@ const App = () => {
 				dispatch({ type: 'GET_PRODUCTS_COUNT', payload: res.data })
 			})
 			.catch(err => console.log(err))
-	}, [getProductsCount])
+	}, [dispatch])
 		
 
     return (

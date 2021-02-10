@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../utility/dbCategory';
-import { getProducts, getSortedProducts, getFilteredProducts } from '../utility/dbProduct';
+import { getFilteredProducts } from '../utility/dbProduct';
 import { Skeleton, Tag } from 'antd';
-import ProductCard from '../components/cards/ProductCard';
 import ProdCard from '../components/cards/ProdCard';
 import PageControl from '../components/pagination/PageControl';
 import FiltersArea from '../components/forms/FiltersArea';
@@ -16,11 +15,10 @@ const ShopPage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage, setProductsPerPage] = useState(12);
+    const productsPerPage= 12;
     const [productsCount, setProductsCount] = useState(0);
     const [categories, setCategories] = useState([]);
     const search = useSelector(state => state.search);
-    const wishlist = useSelector(state => state.products.wishlist);
 
     useEffect(() => {
         setLoading(true);
@@ -75,9 +73,8 @@ const ShopPage = () => {
                     <div className='row d-flex justify-content-lg-start justify-content-center align-items-start align-items-lg-start b-1'>
                         <h2>Products </h2>
                         <Tag color='green' className='ml-2'>{search.category === '' ? 'All' : categories.map(el => {
-                        if (el._id === search.category) {
-                            return el.name
-                        }
+                            return el._id === search.category ? el.name : null
+                            
                         })}</Tag>
                     </div>
 
