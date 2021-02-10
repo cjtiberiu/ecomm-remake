@@ -9,6 +9,8 @@ import { addToWishlist, removeFromWishlist, getWishlist } from '../../utility/db
 import { formatPrice, limitTitle } from '../../utility/formatPrice';
 import { toast } from 'react-toastify';
 
+import './ProdCard.css';
+
 //const { Meta } = Card;
 
 const ProdCard = props => {
@@ -99,7 +101,7 @@ const ProdCard = props => {
     return (
         <Card key={product._id}
             className='product-card'
-            style={{ width: 250, marginRight: 5, marginBottom: 5 }}
+            style={{ width: 250, marginRight: 10, marginBottom: 10 }}
             cover={
                 <div 
                     onClick={() => {

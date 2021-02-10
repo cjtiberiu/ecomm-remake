@@ -42,7 +42,7 @@ const ForgotPassword = props => {
     }
 
     return (
-        <div className='container p-5'>
+        <div className='container p-5 mt-4 mt-lg-0'>
             <div className='row'>
                 <div className='col-md-6 offset-md-3'>
                     <h3 className='mb-5'>Forgot Password</h3>
