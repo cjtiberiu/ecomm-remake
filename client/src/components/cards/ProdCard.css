@@ -1,3 +1,7 @@
+.ant-card {
+  box-shadow: 0 10px 15px -10px rgba(2, 15, 27, 0.2);
+}
+
 .ant-card:hover {
-  box-shadow: 0 10px 10px -10px rgb(2, 15, 27, 0.4);
+  box-shadow: 0 10px 10px -10px rgba(2, 15, 27, 0.4);
 }

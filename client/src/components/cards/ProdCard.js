@@ -145,7 +145,13 @@ const ProdCard = props => {
                 title={product.title}
                 description={product.description}
             /> */}
-            <div className='d-flex justify-content-between'>
+            <div 
+                className='d-flex justify-content-between' 
+                style={{ cursor: 'pointer'}}
+                onClick={() => {
+                    dispatch({ type: 'SET_CURRENT', payload: 'products'})
+                    history.push(`/products/${product._id}`)
+                }}>
                 <span className='font-weight-bold'>{limitTitle(product.title)}</span>
                 <Tag className='text-center h-auto' color='blue'>$ {formatPrice(product.price)}</Tag>
             </div>
