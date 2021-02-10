@@ -24,20 +24,13 @@ const ProductRating = props => {
     })
 
     return (
-        <div className='d-flex align-items-start w-100 justify-content-center'>
             <StarRatings
                 rating={rating}
                 starRatedColor="#b1b10f"
                 numberOfStars={5}
                 name={product._id}
-                starDimension='20px'
+                starDimension='15px'
             />
-            <div style={{ fontSize: '16px', marginTop: -3, marginLeft: 10 }}>
-            {/* {
-                `${rating.toFixed(1)}`
-            } */}
-            </div>
-        </div>
         
     )
 };

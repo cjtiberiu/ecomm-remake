@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../utility/dbCategory';
 import { getProducts, getSortedProducts, getFilteredProducts } from '../utility/dbProduct';
-import { Skeleton } from 'antd';
+import { Skeleton, Tag } from 'antd';
 import ProductCard from '../components/cards/ProductCard';
 import ProdCard from '../components/cards/ProdCard';
 import PageControl from '../components/pagination/PageControl';
@@ -16,7 +16,7 @@ const ShopPage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage, setProductsPerPage] = useState(10);
+    const [productsPerPage, setProductsPerPage] = useState(12);
     const [productsCount, setProductsCount] = useState(0);
     const [categories, setCategories] = useState([]);
     const search = useSelector(state => state.search);
@@ -62,7 +62,7 @@ const ShopPage = () => {
 
 
     return (
-        <div className='mt-3'>
+        <div className='mt-lg-3 mt-5'>
 
             <div className='row justify-content-center'>
 
@@ -72,13 +72,13 @@ const ShopPage = () => {
 
                 <div className='col-lg-10'>
 
-                    <div className='row d-flex justify-content-lg-start justify-content-center'>
-                        <h2>Products - {search.category === '' ? 'All' : categories.map(el => {
+                    <div className='row d-flex justify-content-lg-start justify-content-center align-items-start align-items-lg-start b-1'>
+                        <h2>Products </h2>
+                        <Tag color='green' className='ml-2'>{search.category === '' ? 'All' : categories.map(el => {
                         if (el._id === search.category) {
                             return el.name
                         }
-                        })}</h2>
-                        {/* <ViewOpenFilters /> */}
+                        })}</Tag>
                     </div>
 
                     

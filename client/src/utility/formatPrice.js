@@ -17,3 +17,20 @@ export const formatPrice = number => {
 
     return int;
 };
+
+export const limitTitle = (title, limit = 15) => {
+	const newTitle = [];
+	if (title.length > limit) {
+		title.split(' ').reduce((acc, current) => {
+			if (acc + current.length <= limit) {
+				newTitle.push(current);
+			}
+			return acc + current.length;
+		}, 0);
+
+		return `${newTitle.join(' ')} ...`
+	}
+	return title;
+	
+}
+

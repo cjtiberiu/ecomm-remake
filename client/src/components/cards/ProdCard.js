@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card } from 'antd';
+import { Card, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined, ShoppingCartOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
 import ProductRating from '../product/ProductRating';
 import { updateUserCart, getCartItems } from '../../utility/dbCart';
 import { addToWishlist, removeFromWishlist, getWishlist } from '../../utility/dbWishlist';
-import { formatPrice } from '../../utility/formatPrice';
+import { formatPrice, limitTitle } from '../../utility/formatPrice';
 import { toast } from 'react-toastify';
 import { set } from 'mongoose';
 
@@ -138,11 +138,18 @@ const ProdCard = props => {
                     </div>,
                 ]}
         >
-            <Meta
-                title={`${product.title} - $${formatPrice(product.price)}`}
+            {/* <Meta
+                title={product.title}
                 description={product.description}
-            />
-            <div className='w-100 d-flex justify-content-start align-items-center mt-3'>
+            /> */}
+            <div className='d-flex justify-content-between'>
+                <span className='font-weight-bold'>{limitTitle(product.title)}</span>
+                <Tag className='text-center h-auto' color='blue'>$ {formatPrice(product.price)}</Tag>
+            </div>
+            <div className='mt-2 d-flex justify-content-start'>
+                {product.description}
+            </div>
+            <div className='w-100 d-flex justify-content-start align-items-start mt-3'>
                 <ProductRating product={product} />
             </div>
             

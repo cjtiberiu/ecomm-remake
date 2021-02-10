@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCartItems, updateUserCart } from '../utility/dbCart';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Divider, Button } from 'antd';
+import { Divider, Button, Tag } from 'antd';
 import { formatPrice } from '../utility/formatPrice';
 import CartProduct from '../components/product/CartProduct';
 
@@ -55,6 +55,7 @@ const CartPage = props => {
         },
         normal: {
             width: '20%',
+            padding: '2px',
             maxWidth: '20%',
             textAlign: 'center'
         }
@@ -64,9 +65,10 @@ const CartPage = props => {
     
     return (
         <div>
-            <div className='row'>
-                <div className='col-md-10 mt-3 d-flex justify-content-lg-start justify-content-center'>
-                    <h3>Cart Page - {cart.itemsCount} items </h3>
+            <div className='row mt-5 mt-lg-0'>
+                <div className='col-md-10 mt-4 d-flex justify-content-lg-start justify-content-center align-items-start'>
+                    <h3>Cart</h3>
+                    <Tag color='green' className='ml-2'>{cart.itemsCount} items</Tag>
                 </div>
             </div>
             

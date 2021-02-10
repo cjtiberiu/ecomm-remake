@@ -128,14 +128,19 @@ const App = () => {
     return (
 
 		<div>
-			<div className='nav-container' style={{ backgroundColor: 'rgb(33,133,208)'}}>
-				<Header />
+			<div className='nav-container' style={{ backgroundColor: 'rgb(0,21,41)'}}>
 				<MobileNav />
+				<div className='container'>
+					<Header />
+					
+				</div>
+
+				
 			</div> 
 
 			
 
-			<div className='container-fluid'>
+			<div className='container'>
             
 				<ToastContainer></ToastContainer>
 				<Switch>

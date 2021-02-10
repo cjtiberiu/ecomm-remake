@@ -195,7 +195,7 @@ const searchProducts = async (req, res) => {
     const { text, price, category, stars, color, brand, sort, order, page } = req.body;
 
     const currentPage = page || 1;
-    const productsPerPage = 10;
+    const productsPerPage = 12;
     
     const query = {};
 

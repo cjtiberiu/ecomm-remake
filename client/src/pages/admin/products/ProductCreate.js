@@ -15,7 +15,7 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const colors = ['Silver', 'Brown', 'Black', 'White', 'Blue'];
-const brands = ['Apple', 'Samsung', 'Microsoft', 'Lenovo', 'Asus', 'Dell'];
+const brands = ['Apple', 'Samsung', 'Microsoft', 'Lenovo', 'Asus', 'Dell', 'Other'];
 
 
 const ProductCreate = props => {
