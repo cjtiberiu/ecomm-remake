@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Menu } from 'antd';
 
-
 import PriceFilter from './PriceFilter';
 import StarsFilter from './StarsFilter';
 import ColorFilter from './ColorFilter';
@@ -33,17 +32,16 @@ const FiltersArea = props => {
         
         <Menu
             onClick={handleClick}
-            style={{ width: '100%', marginTop: '5vh'}}
-            defaultOpenKeys={['sub1']}
+            style={{ width: '100%', marginTop: '5vh', border: '1px solid rgba(2, 15, 27, 0.1)'}}
+            defaultOpenKeys={['sub1', 'sub2']}
             mode="inline"
             theme='light'
             className='p-1'
             selectedKeys={[selectedKeys]}
         >
-            <h4 className='text-center'>Filters</h4>
             
             <SubMenu key='sub1' title='Price' className='pb-1'>
-                <div className='w-100'>
+                <div className='w-100 pl-2 pr-2'>
                     <PriceFilter />
                 </div>
             </SubMenu>
