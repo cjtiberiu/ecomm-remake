@@ -1,3 +1,7 @@
 .ant-card {
   border: 1px solid rgba(2, 15, 27, 0.125);
 }
+
+.ant-card:hover {
+  box-shadow: 0 0 7px rgba(4, 72, 136, 0.3);
+}

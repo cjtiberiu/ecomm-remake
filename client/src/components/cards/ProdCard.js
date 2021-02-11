@@ -102,6 +102,7 @@ const ProdCard = props => {
         <Card key={product._id}
             className='product-card'
             style={{ width: 250, marginRight: 10, marginBottom: 10 }}
+            bodyStyle={{ borderRadius: '15px' }}
             cover={
                 <div 
                     onClick={() => {

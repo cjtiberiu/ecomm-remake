@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Menu } from 'antd';
 
 import PriceFilter from './PriceFilter';
@@ -14,19 +14,28 @@ const FiltersArea = props => {
     const { SubMenu } = Menu;
     const [categories, setCategories] = useState([]);
     const dispatch = useDispatch();
-    const [selectedKeys, setSelectedKeys] = useState('all')
+    const [selectedKeys, setSelectedKeys] = useState('all');
+    const nav = useSelector(state => state.nav);
 
     // get the categories from the db that will be used with the select component
     useEffect(() => {
+        
         getCategories()
             .then(res => setCategories(res.data.categories))
             .catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+        console.log(selectedKeys);
+    }, [selectedKeys])
+
     // set the active menu component
     const handleClick = e => {
+        console.log(e.key);
         setSelectedKeys(e.key);
     }
+
+    
 
     return (
         
@@ -37,7 +46,7 @@ const FiltersArea = props => {
             mode="inline"
             theme='light'
             className='p-1'
-            selectedKeys={[selectedKeys]}
+            selectedKeys={[nav.selectedKeys]}
         >
             
             <SubMenu key='sub1' title='Price' className='pb-1'>
@@ -48,10 +57,20 @@ const FiltersArea = props => {
 
 
             <SubMenu key='sub2' title='Category' className='pb-2'>
-                <Menu.Item onClick={e => dispatch({ type: 'SET_SEARCH_CATEGORY', payload: ''})} key={`all`}>All</Menu.Item>
+                <Menu.Item 
+                    onClick={e => {
+                        dispatch({ type: 'SET_OPEN_MENU', payload: 'all'})
+                        dispatch({ type: 'SET_SEARCH_CATEGORY', payload: ''});
+                    }}
+                    key={'all'}>All</Menu.Item>
                 {
                     categories.map(el => {
-                        return <Menu.Item onClick={e => dispatch({ type: 'SET_SEARCH_CATEGORY', payload: el._id})} key={`${el._id}`}>{el.name}</Menu.Item>
+                        return <Menu.Item 
+                            onClick={e => {
+                                dispatch({ type: 'SET_OPEN_MENU', payload: el._id });
+                                dispatch({ type: 'SET_SEARCH_CATEGORY', payload: el._id})
+                            }} 
+                            key={`${el._id}`}>{el.name}</Menu.Item>
                     })    
                 }
             </SubMenu>
