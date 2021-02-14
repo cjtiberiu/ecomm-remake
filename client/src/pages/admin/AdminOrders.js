@@ -33,10 +33,10 @@ const AdminOrders = () => {
                 <div className='col-md-10 d-flex flex-column'>
 
                     {
-                        orders.map(el => {
+                        orders.length > 0 ? orders.map(el => {
                             return (
                                 <div className='border bg-light pl-1 mb-1 d-flex justify-content-between align-items-center' key={el._id}>
-                                    <div style={{ width: '25%', maxWidth: '25%', cursor: 'pointer'}} onClick={() => history.push(`/admin/orders/${el._id}`) }>Ordered by: {el.user.name}</div>
+                                    <div style={{ width: '25%', maxWidth: '25%', cursor: 'pointer'}} onClick={() => history.push(`/admin/orders/${el._id}`) }>Ordered by: {el.user ? `${el.user.name}` : ''}</div>
                                     <div>Amount: ${formatPrice(el.amount)}</div>
                                     <div className='d-flex align-items-center'>
                                         <button 
@@ -56,7 +56,7 @@ const AdminOrders = () => {
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : null
                     }
 
                 </div>

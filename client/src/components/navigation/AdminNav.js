@@ -12,9 +12,6 @@ const AdminNav = () => {
     return (
         <nav>
             <ul className='nav flex-column'>
-                <li className='nav-item'>
-                    <Link to='/admin/dashboard' className='nav-link border border-bottom-5'>Dashboard</Link> 
-                </li>
 
                 <li className='nav-item'>
                     <Link to='/admin/changepassword' className='nav-link border border-bottom-5'>Change password</Link> 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
+import { useSelector } from 'react-redux';
 import ListProducts from './products/ListProducts';
 import SearchFilter from '../../components/forms/SearchFilter';
 
-import { getProducts } from '../../utility/dbProduct';
+
+import { getSortedProducts } from '../../utility/dbProduct';
 
 const AdminProducts = props => {
 
@@ -16,20 +17,23 @@ const AdminProducts = props => {
         e.preventDefault();
 
         setKeyword(e.target.value.toLowerCase());
+        
     }
 
     // get the products from db and display them using card component
     useEffect(() => {
-        getProducts()
+        getSortedProducts('title', 'asc')
             .then(res => setProducts(res.data))
             .catch(err => console.log(err))
     }, []);
 
+    
+
 
     return (
-        <div className='col-md-10'>
+        <div className='col-md-10 pb-5'>
             <div className='row'>
-                <div className='col-md-6'>
+                <div className='col-md-8'>
                     <h4>Manage products</h4>
                 </div>
 
@@ -51,6 +55,8 @@ const AdminProducts = props => {
             </div>
             
             <ListProducts products={products} keyword={keyword} />
+
+            
         </div>
     )
 };

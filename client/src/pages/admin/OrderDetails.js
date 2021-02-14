@@ -32,8 +32,7 @@ const OrderDetails = props => {
             <h4>Order: {orderDetails._id}</h4>
             <div><span style={{ fontWeight: 'bold'}}>Email:</span> {orderDetails.user.email}</div>
             <div><span style={{ fontWeight: 'bold'}}>Address:</span> {orderDetails.user.address}</div>
-            <div><span style={{ fontWeight: 'bold'}}>CreatedAt:</span> {orderDetails.createdAt}</div>
-            <div><span style={{ fontWeight: 'bold'}}>Amount:</span> ${orderDetails.amount}</div>
+            <div><span style={{ fontWeight: 'bold'}}>Date:</span> {Date(orderDetails.createdAt)}</div>
             <div><span style={{ fontWeight: 'bold'}}>Products: </span></div>
             <div className='row'>
                 <div className='col-md-10 d-flex flex-column'>
@@ -50,6 +49,8 @@ const OrderDetails = props => {
                 }
                 </div>
             </div>
+            <div><span style={{ fontWeight: 'bold'}}>Amount:</span> ${orderDetails.amount}</div>
+            
             
             
         </div>

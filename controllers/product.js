@@ -74,14 +74,11 @@ const list = async (req, res) => {
         const { sort, order, page } = req.body;
 
         const currentPage = page || 1;
-        const productsPerPage = 20;
+        const productsPerPage = 12;
     
         const products = await Product.find()
-            .skip((currentPage - 1) * productsPerPage)
             .populate('category')
             .populate('subs')
-            .sort([[sort, order]])
-            .limit(productsPerPage)
             .exec();
     
         res.json(products);
