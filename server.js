@@ -32,10 +32,10 @@ mongoose.connect(process.env.MONGO_DB, {
 fs.readdirSync('./routes').map(route => app.use('/api', require('./routes/' + route)));
 
 
-// app.use(express.static(path.join(__dirname, '/client/build')))
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
-// })
+app.use(express.static(path.join(__dirname, '/client/build')))
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 
 
 // App init
